@@ -1,7 +1,7 @@
 import {base} from '$app/paths'
 import {csvParse} from 'd3'
 
-import { authorList, minMaxYear } from '../utils/dataWrangleUtils.js';
+import { authorList, minMaxYear, translatorsList } from '../utils/dataWrangleUtils.js';
 
 export async function load({fetch}) {
     let csvString = await fetch(`https://docs.google.com/spreadsheets/d/1puV33xy5x7-5ifiV6iYLIfwY2cRWEe9ms3R-yiMyv60/export?format=csv&gid=1304251320`).then(function(response) {
@@ -22,6 +22,7 @@ export async function load({fetch}) {
 
     let years = minMaxYear(datasetJson);
     let authors = authorList(datasetJson);
+    let translators = translatorsList(datasetJson);
 
-    return {dataset: datasetJson, years: years, authors: authors};
+    return {dataset: datasetJson, years: years, authors: authors, translators: translators};
 }

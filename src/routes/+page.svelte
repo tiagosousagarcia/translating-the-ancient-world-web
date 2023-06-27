@@ -10,9 +10,6 @@
 
     let desiredAuthors = {};
     
-
-    console.log(data.authors)
-
     function filterDataset() {
         filteredDataset = data.dataset.filter((entry) => {
             let returnEntry = true
