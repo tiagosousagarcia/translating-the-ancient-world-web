@@ -8,22 +8,22 @@ export function minMaxYear(dataset) {
     return {min: Math.min(...years), max: Math.max(...years)}
 }
 
-export function authorList(dataset) {
-    let allAuthors = dataset.map(entry => entry['author']);
-    let authors = Array.from(new Set(allAuthors));
-    return authors;
+export function extractUniqueNames(dataset, propName) {
+    let allNames = dataset.map(entry => entry[propName]);
+    let names = Array.from(new Set(allNames));
+    return names;
 }
 
-export function translatorsList(dataset) {
-    let translators = [];
-    let allTranslators = dataset.map(entry => entry['Translator']);
-    for (let list of allTranslators) {
+export function extractUniqueNamesFromList(dataset, propName) {
+    let uniqueNames = [];
+    let allNames = dataset.map(entry => entry[propName]);
+    for (let list of allNames) {
         for (let element of list) {
             if (element != '') {
-                translators.push(element);
+                uniqueNames.push(element);
             }
         }
     }
-    translators = Array.from(new Set(translators));
-    return translators;
+    uniqueNames = Array.from(new Set(uniqueNames));
+    return uniqueNames;
 }
