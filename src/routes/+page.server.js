@@ -1,6 +1,8 @@
 import {base} from '$app/paths'
 import {csvParse} from 'd3'
 
+import { authorList, minMaxYear } from '../utils/dataWrangleUtils.js';
+
 export async function load({fetch}) {
     let csvString = await fetch(`https://docs.google.com/spreadsheets/d/1puV33xy5x7-5ifiV6iYLIfwY2cRWEe9ms3R-yiMyv60/export?format=csv&gid=1304251320`).then(function(response) {
         if (response.ok) {
@@ -18,10 +20,8 @@ export async function load({fetch}) {
     // example of filtering dataset
     // let special = datasetJson.filter(entry => entry.author === 'Xenophon')
 
-    // get list of all possible years
-    let years = datasetJson.map(entry => entry['Date'].getFullYear());
-    // removes NaN years
-    years = years.filter(function(entry) {return !isNaN(entry)});
+    let years = minMaxYear(datasetJson);
+    let authors = authorList(datasetJson);
 
-    return {dataset: datasetJson, years: {min: Math.min(...years), max: Math.max(...years)}}
+    return {dataset: datasetJson, years: years, authors: authors};
 }
