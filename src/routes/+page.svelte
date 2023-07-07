@@ -37,9 +37,7 @@
 
 </script>
 
-<h1>Translating the Ancient World</h1>
 <p><strong>{filteredDataset.length}</strong> entries</p>
-<input type="text" bind:value="{yearsMin}"> - <input type="text" bind:value="{yearsMax}">
 {#each data.authors as author}
     <input type=checkbox id={author} name={author} bind:checked={desiredAuthors[author]}>
     <label for={author}>{author}</label>
