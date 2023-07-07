@@ -1,7 +1,7 @@
 import {base} from '$app/paths'
 import {csvParse} from 'd3'
 
-import { authorList, extractUniqueNames, extractUniqueNamesFromList, minMaxYear } from '../utils/dataWrangleUtils.js';
+import { authorList, extractNormalisedTitles, extractUniqueNames, extractUniqueNamesFromList, minMaxYear } from '../utils/dataWrangleUtils.js';
 
 export async function load({fetch}) {
     let csvString = await fetch(`https://docs.google.com/spreadsheets/d/1puV33xy5x7-5ifiV6iYLIfwY2cRWEe9ms3R-yiMyv60/export?format=csv&gid=1304251320`).then(function(response) {
@@ -28,7 +28,7 @@ export async function load({fetch}) {
     let intermediaryTranslators = extractUniqueNamesFromList(datasetJson, 'Intermediary Translators');
     let otherAuthors = extractUniqueNamesFromList(datasetJson, 'Other Authors');
     // This one might not be working as wxpected
-    let normalisedTitles = extractUniqueNames(datasetJson, 'Normalised Title');
+    let normalisedTitles = extractNormalisedTitles(datasetJson);
 
     console.log(normalisedTitles);
     

@@ -27,3 +27,29 @@ export function extractUniqueNamesFromList(dataset, propName) {
     uniqueNames = Array.from(new Set(uniqueNames));
     return uniqueNames;
 }
+
+export function extractNormalisedTitles(dataset) {
+    let allNames = dataset.map(entry => entry['Normalised Title']);
+    let uniqueNames = [];
+
+    for (let name of allNames) {
+        if (name.includes(' ; ') || (name.includes('; '))) {
+            if (name.includes(' ; ')) {
+                let list = name.split(' ; ')
+                for (let oneName of list) {
+                    uniqueNames.push(oneName);
+                }
+            } else if (name.includes('; ')) {
+                let list = name.split('; ')
+                for (let oneName of list) {
+                    uniqueNames.push(oneName);
+                }
+            }
+        } else {
+            uniqueNames.push(name);
+        }
+    }
+
+    uniqueNames = Array.from(new Set(uniqueNames));
+    return uniqueNames;
+}
