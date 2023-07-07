@@ -28,22 +28,22 @@ export function extractUniqueNamesFromList(dataset, propName) {
     return uniqueNames;
 }
 
-export function extractNormalisedTitles(dataset) {
-    let allNames = dataset.map(entry => entry['Normalised Title']);
+export function extractUniqueNamesMixedSingleList(dataset, propName) {
+    let allNames = dataset.map(entry => entry[propName]);
     let uniqueNames = [];
 
     for (let name of allNames) {
-        if (name.includes(' ; ') || (name.includes('; '))) {
+        if (name.includes(' ; ') || name.includes('; ') || name.includes(' | ')) {
+            let list = '';
             if (name.includes(' ; ')) {
-                let list = name.split(' ; ')
-                for (let oneName of list) {
-                    uniqueNames.push(oneName);
-                }
+                list = name.split(' ; ');   
             } else if (name.includes('; ')) {
-                let list = name.split('; ')
-                for (let oneName of list) {
-                    uniqueNames.push(oneName);
-                }
+                list = name.split('; ');
+            } else if (name.includes(' | ')) {
+                list = name.split(' | '); 
+            }
+            for (let oneName of list) {
+                uniqueNames.push(oneName);
             }
         } else {
             uniqueNames.push(name);
@@ -51,5 +51,8 @@ export function extractNormalisedTitles(dataset) {
     }
 
     uniqueNames = Array.from(new Set(uniqueNames));
+    if (uniqueNames.includes('')) {
+        uniqueNames = uniqueNames.filter(e => e != '');
+    }
     return uniqueNames;
 }

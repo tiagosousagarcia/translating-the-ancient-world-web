@@ -1,7 +1,7 @@
 import {base} from '$app/paths'
 import {csvParse} from 'd3'
 
-import { authorList, extractNormalisedTitles, extractUniqueNames, extractUniqueNamesFromList, minMaxYear } from '../utils/dataWrangleUtils.js';
+import { authorList, extractNormalisedTitles, extractUniqueNames, extractUniqueNamesFromList, extractUniqueNamesMixedSingleList, minMaxYear } from '../utils/dataWrangleUtils.js';
 
 export async function load({fetch}) {
     let csvString = await fetch(`https://docs.google.com/spreadsheets/d/1puV33xy5x7-5ifiV6iYLIfwY2cRWEe9ms3R-yiMyv60/export?format=csv&gid=1304251320`).then(function(response) {
@@ -23,14 +23,31 @@ export async function load({fetch}) {
     // let special = datasetJson.filter(entry => entry.author === 'Xenophon')
 
     let years = minMaxYear(datasetJson);
+    
     let authors = extractUniqueNames(datasetJson, 'author');
+    
     let translators = extractUniqueNamesFromList(datasetJson, 'Translator');
     let intermediaryTranslators = extractUniqueNamesFromList(datasetJson, 'Intermediary Translators');
     let otherAuthors = extractUniqueNamesFromList(datasetJson, 'Other Authors');
-    // This one might not be working as wxpected
-    let normalisedTitles = extractNormalisedTitles(datasetJson);
+    let normalisedTitles = extractUniqueNamesMixedSingleList(datasetJson, 'Normalised Title');
 
-    console.log(normalisedTitles);
+    let titles = extractUniqueNames(datasetJson, 'Title')
+
+    let listPublishers = extractUniqueNamesMixedSingleList(datasetJson, 'Publisher(s)')
+
+    let listCities = extractUniqueNamesMixedSingleList(datasetJson, 'City')
+
+    let listSourceLanguages = extractUniqueNamesMixedSingleList(datasetJson, 'Source Language');
+
+    let listIntermediaryLangauges = extractUniqueNamesMixedSingleList(datasetJson, 'Intermediary Language');
+
+    let listTargetLanguages = extractUniqueNamesMixedSingleList(datasetJson, '(Target) Language');
+
+    let listFormats = extractUniqueNamesMixedSingleList(datasetJson, 'format');
+
+    console.log(datasetJson);
+    // console.log(datasetJson.map(e => e['format']));
+    // console.log(listFormats);
     
-    return {dataset: datasetJson, years: years, authors: authors, translators: translators, intermediaryTranslators: intermediaryTranslators, otherAuthors: otherAuthors};
+    return {dataset: datasetJson, years: years, authors: authors, translators: translators, intermediaryTranslators: intermediaryTranslators, otherAuthors: otherAuthors, normalisedTitles: normalisedTitles, titles:titles, listPublishers: listPublishers, listCities: listCities, listSourceLanguages: listSourceLanguages, listIntermediaryLangauges: listIntermediaryLangauges, listTargetLanguages: listTargetLanguages};
 }
