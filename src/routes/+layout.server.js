@@ -45,5 +45,5 @@ export async function load({fetch}) {
 
     let listFormats = extractUniqueNamesMixedSingleList(datasetJson, 'format');
 
-    return {dataset: datasetJson, years: years, authors: authors, translators: translators, intermediaryTranslators: intermediaryTranslators, otherAuthors: otherAuthors, normalisedTitles: normalisedTitles, titles:titles, listPublishers: listPublishers, listCities: listCities, listSourceLanguages: listSourceLanguages, listIntermediaryLangauges: listIntermediaryLangauges, listTargetLanguages: listTargetLanguages, listFormats};
+    return {dataset: datasetJson, years: years, authors: authors, translators: translators, intermediaryTranslators: intermediaryTranslators, otherAuthors: otherAuthors, normalisedTitles: normalisedTitles, titles:titles, listPublishers: listPublishers, listCities: listCities, listSourceLanguages: listSourceLanguages, listIntermediaryLangauges: listIntermediaryLangauges, listTargetLanguages: listTargetLanguages, listFormats: listFormats};
 }

@@ -26,6 +26,13 @@
 		<MultipleValueFilter listNames = {data.intermediaryTranslators} filterName = 'Intermediary Translators'/>
 		<MultipleValueFilter listNames = {data.otherAuthors} filterName = 'Other authors'/>
 		<MultipleValueFilter listNames = {data.normalisedTitles} filterName = 'Normalised Titles'/>
+		<MultipleValueFilter listNames = {data.titles} filterName = 'Titles'/>
+		<MultipleValueFilter listNames = {data.listPublishers} filterName = 'Publishers'/>
+		<MultipleValueFilter listNames = {data.listCities} filterName = 'Cities'/>
+		<MultipleValueFilter listNames = {data.listSourceLanguages} filterName = 'Source Language'/>
+		<MultipleValueFilter listNames = {data.listIntermediaryLangauges} filterName = 'Intermediary Languages'/>
+		<MultipleValueFilter listNames = {data.listTargetLanguages} filterName = 'Target Language'/>
+		<MultipleValueFilter listNames = {data.listFormats} filterName = 'Format'/>
 
 	</svelte:fragment>
 	<!-- (sidebarRight) -->
