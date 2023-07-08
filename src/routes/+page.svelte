@@ -38,11 +38,6 @@
 </script>
 
 <p><strong>{filteredDataset.length}</strong> entries</p>
-{#each data.authors as author}
-    <input type=checkbox id={author} name={author} bind:checked={desiredAuthors[author]}>
-    <label for={author}>{author}</label>
-{/each}
-<button on:click={filterDataset}>Filter</button>
 {#each filteredDataset as entry }
 <p>{entry.Date.getFullYear()}-{entry.author}-{entry.Translator}-{entry.Title}-{entry.City}</p>    
 {/each}

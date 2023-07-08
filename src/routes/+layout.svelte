@@ -22,6 +22,9 @@
 		<h2>Filters</h2>
 		<DateFilter yearsMin = {data.years.min} yearsMax ={data.years.max}/>
 		<MultipleValueFilter listNames = {data.authors} filterName = 'Authors'/>
+		<MultipleValueFilter listNames = {data.translators} filterName = 'Translators'/>
+		<MultipleValueFilter listNames = {data.intermediaryTranslators} filterName = 'Intermediary Translators'/>
+		<MultipleValueFilter listNames = {data.otherAuthors} filterName = 'Other authors'/>
 
 	</svelte:fragment>
 	<!-- (sidebarRight) -->
