@@ -25,6 +25,7 @@
 		<MultipleValueFilter listNames = {data.translators} filterName = 'Translators'/>
 		<MultipleValueFilter listNames = {data.intermediaryTranslators} filterName = 'Intermediary Translators'/>
 		<MultipleValueFilter listNames = {data.otherAuthors} filterName = 'Other authors'/>
+		<MultipleValueFilter listNames = {data.normalisedTitles} filterName = 'Normalised Titles'/>
 
 	</svelte:fragment>
 	<!-- (sidebarRight) -->
