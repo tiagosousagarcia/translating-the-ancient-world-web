@@ -1,43 +1,13 @@
 <script>
-	import { onMount } from 'svelte';
-
+	import DataTable from '$lib/DataTable.svelte';
+    
     export let data
-
-    let yearsMin = data.years.min;
-    let yearsMax = data.years.max;
 
     let filteredDataset = data.dataset;
 
-    let desiredAuthors = {};
-    
-    function filterDataset() {
-        filteredDataset = data.dataset.filter((entry) => {
-            let returnEntry = true
-            if (entry['Date'].getFullYear() < yearsMin || entry['Date'].getFullYear() > yearsMax) {
-                returnEntry = false;
-            }
-
-            if (!desiredAuthors[entry['author']]) {
-                returnEntry = false;
-            }
-            
-            if (returnEntry) {
-                return entry;
-            }
-        })
-    }
-
-    onMount( async () => {
-        for (let author of data.authors) {
-            desiredAuthors[author] = true;
-        }
-
-        console.log(desiredAuthors);
-    })
+    console.log(filteredDataset);
 
 </script>
 
 <p><strong>{filteredDataset.length}</strong> entries</p>
-{#each filteredDataset as entry }
-<p>{entry.Date.getFullYear()}-{entry.author}-{entry.Translator}-{entry.Title}-{entry.City}</p>    
-{/each}
+<DataTable source = {filteredDataset}/>
