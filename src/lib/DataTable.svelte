@@ -1,5 +1,5 @@
 <script>
-    import { Paginator, Table, tableMapperValues } from '@skeletonlabs/skeleton';
+    import { Paginator, modalStore } from '@skeletonlabs/skeleton';
 
     export let source;
 
@@ -10,10 +10,45 @@
         amounts: [5,10,25,50]
     };
 
+    function clickHandler(entry) {
+        console.log(entry);
+        const modal = {
+            type: 'alert',
+            // Data
+            title: 'Detailed view',
+            body: entry,
+        };
+        modalStore.trigger(modal);
+
+    }
+
     $: paginatedSource = source.slice(page.offset * page.limit, page.offset * page.limit + page.limit)
 
 </script>
 
 
-<Table source={{head: ['Date', 'author', 'Translator', 'Title', 'Publisher(s)', 'City', '(Target) Language'], body: tableMapperValues(paginatedSource, ['Date', 'author', 'Translator', 'Title', 'Publisher(s)', 'City', '(Target) Language'])}}/>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Author</th>
+        <th>Translator</th>
+        <th>Title</th>
+        <th>Publisher(s)</th>
+        <th>City</th>
+        <th>Source Language</th>
+        <th>Target Language</th>
+    </tr>
+    {#each paginatedSource as object}
+        <tr on:click={clickHandler(object)}>
+            <td>{object['Date'].getFullYear()}</td>
+            <td>{object['author']}</td>
+            <td>{object['Translator']}</td>
+            <td>{object['Title']}</td>
+            <td>{object['Publisher(s)']}</td>
+            <td>{object['City']}</td>
+            <td>{object['Source Language']}</td>
+            <td>{object['(Target) Language']}</td>
+        </tr>
+    {/each}
+</table>
 <Paginator bind:settings={page} showFirstLastButtons = {false} showPreviousNextButtons = {true}/>

@@ -8,13 +8,13 @@
 	// Finally, your application's global stylesheet (sometimes labeled 'app.css')
 	import '../app.postcss';
 	
-	import { AppShell } from '@skeletonlabs/skeleton';
+	import { AppShell, Modal } from '@skeletonlabs/skeleton';
 	import FilterMenu from '$lib/FilterMenu.svelte';
 
 	export let data;
 </script>
 
-
+<Modal />
 <AppShell>
 	<svelte:fragment slot="header"><h1>Translating the Ancient World</h1></svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">

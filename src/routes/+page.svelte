@@ -6,7 +6,6 @@
     let filteredDataset = data.dataset;
 
     console.log(filteredDataset);
-
 </script>
 
 <p><strong>{filteredDataset.length}</strong> entries</p>
