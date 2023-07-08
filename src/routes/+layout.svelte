@@ -16,7 +16,7 @@
 
 <Modal />
 <AppShell>
-	<svelte:fragment slot="header"><h1>Translating the Ancient World</h1></svelte:fragment>
+	<svelte:fragment slot="header"><h1 class="h1">Translating the Ancient World</h1></svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
 		<FilterMenu data = {data} />
 	</svelte:fragment>

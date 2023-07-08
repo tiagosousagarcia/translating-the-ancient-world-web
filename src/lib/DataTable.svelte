@@ -1,6 +1,8 @@
 <script>
     import { Paginator, modalStore } from '@skeletonlabs/skeleton';
 
+    import EntryDetailModal from './EntryDetailModal.svelte';
+
     export let source;
 
     let page = {
@@ -12,12 +14,18 @@
 
     function clickHandler(entry) {
         console.log(entry);
-        const modal = {
-            type: 'alert',
-            // Data
-            title: 'Detailed view',
-            body: entry,
+        const modalComponent = {
+            // Pass a reference to your custom component
+            ref: EntryDetailModal,
+            // Add the component properties as key/value pairs
+            props: { entryData: entry },
         };
+
+        const modal = {
+            type: 'component',
+            component:  modalComponent
+        };
+
         modalStore.trigger(modal);
 
     }

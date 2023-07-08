@@ -5,7 +5,7 @@
     export let data;
 </script>
 
-<h2>Filters</h2>
+<h2 class="h2">Filters</h2>
 <div class="filters">
     <DateFilter yearsMin = {data.years.min} yearsMax ={data.years.max}/>
     <MultipleValueFilter listNames = {data.authors} filterName = 'Authors'/>

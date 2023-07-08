@@ -33,7 +33,7 @@
 
 <div>
     <button class="btn" on:click={expand} on:keypress>
-        <h3>{filterName} {!expanded ? '+' : '-'}</h3>
+        <h3 class="h3">{filterName} {!expanded ? '+' : '-'}</h3>
     </button>
         {#if expanded}
             <div class="list" transition:slide>
